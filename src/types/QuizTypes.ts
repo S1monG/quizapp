@@ -28,6 +28,7 @@ const CategoryMap = {
 }
 
 export type Category = keyof typeof CategoryMap
+export const categories: Category[] = Object.keys(CategoryMap) as Category[]
 
 export type QuizData = {
     results : {
