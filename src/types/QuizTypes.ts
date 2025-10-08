@@ -1,6 +1,6 @@
 export type Difficulty = "easy" | "medium" | "hard"
 
-const CategoryMap = {
+export const CategoryMap = {
     "General Knowledge": 9,
     "Entertainment: Books": 10,
     "Entertainment: Film": 11,
