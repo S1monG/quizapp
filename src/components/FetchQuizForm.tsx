@@ -1,4 +1,4 @@
-import { QuizData } from "../types/QuizTypes"
+import type { QuizData } from "../types/QuizTypes"
 
 function FetchQuizForm() {
 
@@ -9,6 +9,8 @@ function FetchQuizForm() {
     }
 
     return (
-        <></>
+        <form className="flex flex-col gap-4">
+            
+        </form>
     )
 }

@@ -1,5 +1,4 @@
-import { useEffect } from "react"
-import { QuizData } from "../types/QuizTypes"
+import type { QuizData } from "../types/QuizTypes"
 
 function QuizView() {
 
