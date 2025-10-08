@@ -6,6 +6,7 @@ import Home from './components/Home.js';
 import ResultView from './components/ResultView.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import QuizView from './components/QuizView.js';
+import PageNotFound from './components/PageNotFound.js'
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "quiz", Component: QuizView },
-      { path: "result", Component: ResultView }
+      { path: "result", Component: ResultView },
+      { path: "*", Component: PageNotFound },
     ]
   }
 ])
