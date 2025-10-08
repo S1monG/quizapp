@@ -1,15 +1,16 @@
-import { Route, Routes, Outlet } from 'react-router-dom';
-import Home from './components/Home';
-import QuizView from './components/QuizView';
-import ResultView from './components/ResultView';
+import { Outlet } from 'react-router-dom';
+import type { QuizData } from './types/QuizTypes';
 import NavBar from './components/NavBar';
+import { useState } from 'react';
 
 function App() {
+
+  const [quizResults, setQuizResults] = useState<QuizData[]>([]);
 
   return (
     <>
       <NavBar />
-      <Outlet />
+      <Outlet context={{ quizResults, setQuizResults }} />
     </>
   )
 }
