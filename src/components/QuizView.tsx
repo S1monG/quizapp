@@ -12,7 +12,7 @@ function QuizView() {
 
     return (
         <>
-            <h1 className="text-4xl font-bold text-center mb-5">Quiz</h1>
+            <h1 className="text-6xl font-bold text-blue-200 drop-shadow-[0_0_1px_black] text-center mt-5 mb-5">Quiz</h1>
             {fetchView ? 
                 <FetchQuizForm setCurrentQuiz={setCurrentQuiz} setFetchView={setFetchView} /> : 
                 <DisplayQuiz quiz={currentQuiz as QuizData} quizResults={quizResults} setQuizResults={setQuizResults} setFetchView={setFetchView} />
