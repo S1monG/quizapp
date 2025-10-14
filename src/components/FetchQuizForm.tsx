@@ -20,7 +20,6 @@ function FetchQuizForm( {setCurrentQuiz, setFetchView}: PropType ) {
 
     const location = useLocation();
     const preselectedCategory = location.state?.category || "";
-    //const [category, setCategory] = useState<Category | "">("")
     const [category, setCategory] = useState<Category | "">(preselectedCategory);
     const [difficulty, setDifficulty] = useState<InputDifficulty>("mixed")
     const [type, setType] = useState<InputType>("mixed")

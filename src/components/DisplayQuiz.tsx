@@ -46,17 +46,17 @@ function DisplayQuiz( {quiz, quizResults, setQuizResults, setFetchView}: PropTyp
 
                                 <div className="items-center justify-center grid grid-cols-2 gap-4">
                                     { quizQuestions[index]?.map((answer, answerIndex) => (
-                                            <Button
-                                                key={index.toString() + answerIndex.toString()}
-                                                variant={ quizAnswer[index] === answer ? "default" : "outline" }
-                                                onClick={ () => {
-                                                    const newAnswers = [...quizAnswer]
-                                                    newAnswers[index] = answer
-                                                    setQuizAnswer(newAnswers)
-                                                } }
-                                            >
-                                                {decodeHTML(answer)}
-                                            </Button>
+                                        <Button
+                                            key={index.toString() + answerIndex.toString()}
+                                            variant={ quizAnswer[index] === answer ? "default" : "outline" }
+                                            onClick={ () => {
+                                                const newAnswers = [...quizAnswer]
+                                                newAnswers[index] = answer
+                                                setQuizAnswer(newAnswers)
+                                            } }
+                                        >
+                                            {decodeHTML(answer)}
+                                        </Button>
                                     ))}
                                 </div>
                             </CardContent>

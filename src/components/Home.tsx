@@ -49,7 +49,6 @@ function Home() {
                     <h2 className="bg-blue-200 p-4 text-2xl font-bold text-center mt-2">Your progress</h2>
                     <h3 className="text-xl text-center font-bold mt-5">
                         {amountUniquePlayed} / {categories.length} quizzes played </h3>
-
                     <div className="w-2/3 mx-auto bg-gray-200 rounded-full h-4 mt-1">
                         <div 
                             className="bg-blue-200 h-4 rounded-full" 
@@ -60,9 +59,6 @@ function Home() {
                      <div className="grid grid-cols-1 gap-2 mt-2">
                         {categoriesNotPlayed()}
                     </div>
-
-                        
-
                 </div>
             </div>
         </div>
