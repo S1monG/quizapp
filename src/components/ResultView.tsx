@@ -1,6 +1,6 @@
 import type { QuizData } from "@/types/QuizTypes";
 import React, {useState, useMemo} from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 type PropsType = { 
     quizResults: QuizData[];
@@ -9,44 +9,32 @@ type PropsType = {
 
 function ResultView() {
     const { quizResults } = useOutletContext<PropsType>() || { quizResults: []};
-    const [sortBy, setSortBy] = useState<"category" | "difficulty" | "result" | "correctFirst" | "correctLast">("category");
-
-    const categoryStats = quizResults.reduce((acc, quiz) => {
-        quiz.results.forEach((res) => {
-            const cat = res.category;
-            if (!acc[cat]) {
-                acc[cat] = { total: 0, correct: 0, difficulty: res.difficulty };
-            }
-            acc[cat].total++;
-            if (res.userAnswer === res.correct_answer) acc[cat].correct++;
-        });
-        return acc;
-    }, {} as Record<string, { total: number; correct: number; difficulty: string }>);
+    const [sortBy, setSortBy] = useState<"category" | "difficulty" | "result">("category");
 
     const sortedStats = useMemo(() => {
-        const entries = quizResults.flatMap(quiz => {
-            const correctCount = quiz.results.filter(q => q.userAnswer === q.correct_answer).length;
-            const totalCount = quiz.results.length;
+        const entries = quizResults.map(quiz => {
+            const category = quiz.results[0].category;
             const difficultySet = new Set(quiz.results.map(q => q.difficulty));
             const difficulty = difficultySet.size === 1 ? quiz.results[0].difficulty : "mixed"; //Denna är något problematisk dock
-            const categorySet = new Set(quiz.results.map(q => q.category));
-            const category = categorySet.size === 1 ? quiz.results[0].category : "mixed";
-
+            const correctCount = quiz.results.filter(q => q.userAnswer === q.correct_answer).length;
+            const totalCount = quiz.results.length;
+            
             return { category, difficulty, correct: correctCount, total: totalCount };
         });
+
+        const diffOrder = ["easy", "medium", "hard", "mixed"];
 
         switch (sortBy) {
             case "category":
                 return entries.sort((a, b) => a.category.localeCompare(b.category));
             case "difficulty":
-                const diffOrder = ["easy", "medium", "hard", "mixed"];
                 return entries.sort((a, b) => diffOrder.indexOf(a.difficulty) - diffOrder.indexOf(b.difficulty));
             case "result":
                 return entries.sort((a, b) => (b.correct / b.total) - (a.correct / a.total));
             default:
                 return entries;
         }
-    }, [categoryStats, sortBy]);
+    }, [quizResults, sortBy]);
   
     
     return (
@@ -67,7 +55,13 @@ function ResultView() {
                 <div className="font-bold bg-blue-300 p-2">Difficulty</div>
                 <div className="font-bold bg-blue-300 p-2">Result</div>
 
-                {sortedStats.map((stats, index) => (
+                {sortedStats.length === 0 ? (
+                    <div className="col-span-3 text-center text-gray-600 p-6">
+                        No results yet. Take a quiz to see your results here!
+                    </div>
+                ) : (
+
+                sortedStats.map((stats, index) => (
 
                     <React.Fragment key={index}>
                         <div className={`p-2 ${index % 2 === 0 ? "bg-blue-50" : "bg-white"}`}>
@@ -82,7 +76,8 @@ function ResultView() {
                             <div className="col-span-3 border-t border-gray-300"></div>
                         )}
                     </React.Fragment>
-                ))}
+                ))
+            )}
             </div>          
         </div>
     )
