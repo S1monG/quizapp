@@ -2,6 +2,7 @@ import type { QuizData } from "@/types/QuizTypes"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 type PropType = {
     quiz: QuizData
@@ -13,6 +14,7 @@ function DisplayQuiz( {quiz, quizResults, setQuizResults, setFetchView}: PropTyp
 
     const [quizAnswer, setQuizAnswer] = useState<string[]>(Array(quiz.results.length).fill(""))
     const [quizQuestions, setQuizQuestions] = useState<string[][]>([])
+    const navigate = useNavigate();
 
     useEffect(() => {
         setQuizQuestions(quiz.results.map((result) => {
@@ -63,7 +65,10 @@ function DisplayQuiz( {quiz, quizResults, setQuizResults, setFetchView}: PropTyp
             ))}
 
             <div className="mt-4 ml-5">
-                <Button onClick={submitQuiz}>Submit Quiz</Button>
+                <Button onClick={() => {
+                    submitQuiz();
+                    navigate("/result");
+                    }}>Submit Quiz</Button>
             </div>
         </>
 

@@ -17,7 +17,7 @@ function Home() {
             .sort(() => Math.random() - 0.5)        //Random order
             .slice(0, 6)                            //Max 6
             .map((category) => ( <h4 className="p-1 text-xl text-center border border-blue-200 hover:bg-blue-100" 
-                onClick={() => navigate("/quiz")}>{category}</h4>)
+                onClick={() => navigate("/quiz", { state: { category }})}>{category}</h4>)
             );
     }
 
@@ -25,7 +25,7 @@ function Home() {
         return [...categories]
             .sort((a, b) => a.localeCompare(b))
             .map((category) => ( <h4 className="p-1 text-xl text-center border border-blue-200 hover:bg-blue-100" 
-                onClick={() => navigate("/quiz")}>{category}</h4>)
+                onClick={() => navigate("/quiz", { state: { category }})}>{category}</h4>)
         );
     }
 

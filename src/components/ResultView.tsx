@@ -1,6 +1,6 @@
 import type { QuizData } from "@/types/QuizTypes";
 import React, {useState, useMemo} from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 type PropsType = { 
     quizResults: QuizData[];
@@ -51,7 +51,7 @@ function ResultView() {
     
     return (
         <div>
-            <h1 className="text-6xl mt-10 font-bold text-center text-blue-200 drop-shadow-[0_0_1px_black]">Result</h1>
+            <h1 className="text-6xl mt-5 font-bold text-center text-blue-200 drop-shadow-[0_0_1px_black]">Result</h1>
 
             <div className="ml-10 mt-10 mb-4">
                 <label className="mr-2 font-medium">Sort by:</label>
@@ -63,9 +63,9 @@ function ResultView() {
             </div>
 
             <div className="grid grid-cols-[1fr_1fr_150px] ml-10 mr-10 mt-4 border border-gray-500 text-left">
-                <div className="font-bold bg-blue-300 p-2">Category</div>
-                <div className="font-bold bg-blue-300 p-2">Difficulty</div>
-                <div className="font-bold bg-blue-300 p-2">Result</div>
+                <div className="font-bold bg-blue-200 p-2">Category</div>
+                <div className="font-bold bg-blue-200 p-2">Difficulty</div>
+                <div className="font-bold bg-blue-200 p-2">Result</div>
 
                 {sortedStats.map((stats, index) => (
 
