@@ -40,6 +40,12 @@ function FetchQuizForm( {setCurrentQuiz, setFetchView}: PropType ) {
         const res = await fetch(url)
         const data : QuizData = await res.json()
         console.log(data)
+
+        if (data.response_code === 1) {
+            alert("Not enough questions found for the selected options. Please try different options.")
+            return
+        }
+
         setCurrentQuiz(data)
         setFetchView(false)
     }
