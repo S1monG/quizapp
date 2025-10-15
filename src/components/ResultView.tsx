@@ -15,7 +15,7 @@ function ResultView() {
         const entries = quizResults.map(quiz => {
             const category = quiz.results[0].category;
             const difficultySet = new Set(quiz.results.map(q => q.difficulty));
-            const difficulty = difficultySet.size === 1 ? quiz.results[0].difficulty : "mixed"; //Denna är något problematisk dock
+            const difficulty = difficultySet.size === 1 ? quiz.results[0].difficulty : "mixed";
             const correctCount = quiz.results.filter(q => q.userAnswer === q.correct_answer).length;
             const totalCount = quiz.results.length;
             
