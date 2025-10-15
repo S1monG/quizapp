@@ -4,7 +4,6 @@ import { useOutletContext } from "react-router-dom";
 
 type PropsType = { 
     quizResults: QuizData[];
-    setQuizResults: (results: QuizData[]) => void;
 };
 
 function ResultView() {
