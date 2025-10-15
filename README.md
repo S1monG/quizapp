@@ -6,6 +6,7 @@ A simple quizapp using questions from the open trivia database https://opentdb.c
 # Running the QuizApp
 
 npm install
+
 npm run dev
 
 The app will be present on http://localhost:5173
