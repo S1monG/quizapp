@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useLocation, useNavigate } from "react-router-dom"
 
 
 type PropType = {
@@ -17,10 +18,14 @@ type InputType = "multiple" | "boolean" | "mixed"
 
 function FetchQuizForm( {setCurrentQuiz, setFetchView}: PropType ) {
 
-    const [category, setCategory] = useState<Category | "">("")
+    const location = useLocation();
+    const preselectedCategory = location.state?.category || "";
+    const [category, setCategory] = useState<Category | "">(preselectedCategory);
     const [difficulty, setDifficulty] = useState<InputDifficulty>("mixed")
     const [type, setType] = useState<InputType>("mixed")
     const [amount, setAmount] = useState(10)
+    const navigate = useNavigate();
+    
 
     const fetchQuiz = async (e: FormEvent) => {
         e.preventDefault()
@@ -116,7 +121,10 @@ function FetchQuizForm( {setCurrentQuiz, setFetchView}: PropType ) {
             </div>
 
             <div className="flex items-center justify-end mr-5">
-                <Button type="submit" onClick={fetchQuiz}>Get Quiz</Button>
+                <Button type="submit" onClick={(e) => {
+                    fetchQuiz(e);
+                    navigate("/quiz");
+                }}>Get Quiz</Button>
             </div>
             
         </form>
