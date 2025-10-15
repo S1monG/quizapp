@@ -9,4 +9,4 @@ npm install
 
 npm run dev
 
-The app will be present on http://localhost:5173
+The app will be running on http://localhost:5173
